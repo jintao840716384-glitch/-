@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://c5p4kbiyi7f1s"]
+
+[ext_resource type="Script" uid="uid://dn6wvv8ds41na" path="res://jiao_ben/tan_suo_UI.gd" id="1_vdf1p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q167g"]
+bg_color = Color(0.0572, 0.055999998, 0.08, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+shadow_color = Color(0, 0, 0, 0.28235295)
+shadow_size = 1
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_d2h7i"]
+font_size = 8
+
+[sub_resource type="SystemFont" id="SystemFont_tkulx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybccq"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.098900005, 0.14697002, 0.23, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="ui_1" type="Control" unique_id=2044699124]
+layout_mode = 3
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_vdf1p")
+
+[node name="di_kuang" type="Panel" parent="." unique_id=1944066786]
+layout_mode = 0
+offset_right = 65.0
+offset_bottom = 30.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_q167g")
+
+[node name="wen_an" type="Label" parent="di_kuang" unique_id=176195316]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 64.0
+offset_bottom = 19.0
+text = "确定进入"
+label_settings = SubResource("LabelSettings_d2h7i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="que_ding" type="Button" parent="di_kuang" unique_id=1327614340]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 19.0
+offset_right = 31.0
+offset_bottom = 27.0
+theme_override_constants/h_separation = 4
+theme_override_fonts/font = SubResource("SystemFont_tkulx")
+theme_override_font_sizes/font_size = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_ybccq")
+text = "确定"
+
+[node name="qu_xiao" type="Button" parent="di_kuang" unique_id=1736960303]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 19.0
+offset_right = 59.0
+offset_bottom = 27.0
+theme_override_constants/h_separation = 4
+theme_override_fonts/font = SubResource("SystemFont_tkulx")
+theme_override_font_sizes/font_size = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_ybccq")
+text = "取消
+"
