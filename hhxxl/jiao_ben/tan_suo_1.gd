@@ -1,37 +1,28 @@
-extends Control
+extends Node2D
 
-signal yao_qiu_tan_suo
+# 探索1场景脚本
+# 负责：
+# 1. 进入探索时打印当前信息
+# 2. 正常进入探索时，把玩家放到探索出生点
+# 3. 从战斗胜利返回探索时，把玩家放回战斗前的位置
+# 4. 离开探索由 tan_suo_chu_kou.gd 负责
 
-@onready var qu_kuai_label: Label = $xin_xi_mian_ban/qu_kuai_label
-@onready var ling_qi_label: Label = $xin_xi_mian_ban/ling_qi_label
-@onready var zi_yuan_label: Label = $xin_xi_mian_ban/zi_yuan_label
-@onready var di_ren_label: Label = $xin_xi_mian_ban/di_ren_label
-@onready var tan_suo_button: Button = $xin_xi_mian_ban/tan_suo_button
-@onready var que_ren_tan_suo: ConfirmationDialog = $que_ren_tan_suo
+@onready var player: CharacterBody2D = $wan_jiao
+
+# 探索地图默认出生点
+@onready var chu_sheng_dian: Marker2D = $tan_suo_chu_sheng_dian
 
 
 func _ready() -> void:
-	tan_suo_button.text = "进入探索"
+	print("已经进入探索1")
+	print("当前世界：", GameState.current_region_id)
+	print("当前区块：", GameState.current_chunk)
+	print("探索种子：", GameState.current_explore_seed)
 
-	que_ren_tan_suo.title = "确认"
-	que_ren_tan_suo.dialog_text = "确定进入当前区块探索？"
-	que_ren_tan_suo.get_ok_button().text = "确定"
-	que_ren_tan_suo.get_cancel_button().text = "取消"
-
-	tan_suo_button.pressed.connect(_on_tan_suo_button_pressed)
-	que_ren_tan_suo.confirmed.connect(_on_que_ren_tan_suo_confirmed)
-
-
-func shua_xin_qu_kuai_xin_xi(chunk: Vector2i) -> void:
-	qu_kuai_label.text = "当前区块：%d, %d" % [chunk.x, chunk.y]
-	ling_qi_label.text = "灵气：暂未生成"
-	zi_yuan_label.text = "资源：暂未生成"
-	di_ren_label.text = "敌人：暂未生成"
-
-
-func _on_tan_suo_button_pressed() -> void:
-	que_ren_tan_suo.popup_centered(Vector2i(420, 160))
-
-
-func _on_que_ren_tan_suo_confirmed() -> void:
-	yao_qiu_tan_suo.emit()
+	# 如果是从战斗胜利返回探索1，就放回战斗前的位置
+	if GameState.has_return_explore_position:
+		player.global_position = GameState.return_explore_position
+		GameState.has_return_explore_position = false
+	else:
+		# 如果是从世界1正常进入探索1，就放到探索出生点
+		player.global_position = chu_sheng_dian.global_position
