@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 GameState="*uid://dgq0ijcrds3mw"
 ZongUi="*uid://b37ytx8203qis"
+PlayerState="*uid://dgd3u5b78ahiv"
+AttributeCalculator="*uid://dgaxic8pcl2v1"
 
 [display]
 
